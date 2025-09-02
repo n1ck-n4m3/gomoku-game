@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomoku - Five in a Row</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Gomoku - Five in a Row</h1>
+            <div class="game-info">
+                <div class="player-info">
+                    <div id="playerNumber" class="player-badge">Connecting...</div>
+                    <div id="currentTurn" class="turn-indicator">Waiting for game...</div>
+                </div>
+                <div class="game-controls">
+                    <button id="newGameBtn" class="btn btn-primary">New Game</button>
+                    <button id="aiModeBtn" class="btn btn-secondary">Play vs AI</button>
+                    <button id="localMultiplayerBtn" class="btn btn-secondary">Local Multiplayer</button>
+                    <div class="players-count">
+                        <span id="playersCount">Players: 0/2</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-board-container">
+                <canvas id="gameBoard" width="600" height="600"></canvas>
+                <div id="gameStatus" class="game-status"></div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="game-rules">
+                    <h3>🎯 Game Rules</h3>
+                    <ul>
+                        <li>Get 5 stones in a row to win</li>
+                        <li>Black stones go first</li>
+                        <li>Click intersections to place stones</li>
+                        <li>Game works offline without server</li>
+                    </ul>
+                </div>
+                
+                <div class="move-history">
+                    <h3>📝 Move History</h3>
+                    <div id="moveList" class="move-list"></div>
+                </div>
+
+                <div class="connection-status">
+                    <h3>🌐 Connection</h3>
+                    <div id="connectionStatus" class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Connecting...</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="gameModal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="modalTitle">Game Over</h2>
+                <p id="modalMessage"></p>
+                <button id="modalNewGame" class="btn btn-primary">Start New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
