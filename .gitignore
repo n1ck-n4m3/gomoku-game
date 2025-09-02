@@ -20,3 +20,7 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Assignment files (not to be shared publicly)
+proj1.pdf
+proj1.txt
