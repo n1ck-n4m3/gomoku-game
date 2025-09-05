@@ -6,7 +6,7 @@ class GomokuGame {
         this.isConnected = false;
         
         // Game state
-        this.board = Array(15).fill().map(() => Array(15).fill(0));
+        this.board = Array(19).fill().map(() => Array(19).fill(0));
         this.currentPlayer = 1; // 1: black, 2: white
         this.playerNumber = null;
         this.gameOver = false;
@@ -18,7 +18,7 @@ class GomokuGame {
         
         // Canvas settings
         this.cellSize = 40;
-        this.boardSize = 15;
+        this.boardSize = 19;
         this.margin = 20;
         
         // Animation state
@@ -351,14 +351,14 @@ class GomokuGame {
         
         // Find position near existing stones
         for (let distance = 1; distance <= 3; distance++) {
-            for (let row = 0; row < 15; row++) {
-                for (let col = 0; col < 15; col++) {
+            for (let row = 0; row < 19; row++) {
+                for (let col = 0; col < 19; col++) {
                     if (this.board[row][col] !== 0) {
                         for (let dr = -distance; dr <= distance; dr++) {
                             for (let dc = -distance; dc <= distance; dc++) {
                                 const newRow = row + dr;
                                 const newCol = col + dc;
-                                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15 && 
+                                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19 && 
                                     this.board[newRow][newCol] === 0) {
                                     return { row: newRow, col: newCol };
                                 }
@@ -439,8 +439,8 @@ class GomokuGame {
         const goodMoves = [];
         const normalMoves = [];
 
-        for (let row = 0; row < 15; row++) {
-            for (let col = 0; col < 15; col++) {
+        for (let row = 0; row < 19; row++) {
+            for (let col = 0; col < 19; col++) {
                 if (this.board[row][col] === 0) {
                     const moveValue = this.evaluateMoveImportance(row, col);
                     const move = { row, col, value: moveValue };
@@ -524,7 +524,7 @@ class GomokuGame {
             for (let i = 1; i < 5; i++) {
                 const newRow = row + i * dx;
                 const newCol = col + i * dy;
-                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15 && 
+                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19 && 
                     this.board[newRow][newCol] === player) {
                     count++;
                 } else {
@@ -536,7 +536,7 @@ class GomokuGame {
             for (let i = 1; i < 5; i++) {
                 const newRow = row - i * dx;
                 const newCol = col - i * dy;
-                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15 && 
+                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19 && 
                     this.board[newRow][newCol] === player) {
                     count++;
                 } else {
@@ -562,7 +562,7 @@ class GomokuGame {
             while (i <= 3) {
                 const newRow = row + i * dx;
                 const newCol = col + i * dy;
-                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15) {
+                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19) {
                     if (this.board[newRow][newCol] === player) {
                         count++;
                     } else if (this.board[newRow][newCol] === 0) {
@@ -580,7 +580,7 @@ class GomokuGame {
             while (i <= 3) {
                 const newRow = row - i * dx;
                 const newCol = col - i * dy;
-                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15) {
+                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19) {
                     if (this.board[newRow][newCol] === player) {
                         count++;
                     } else if (this.board[newRow][newCol] === 0) {
@@ -649,8 +649,8 @@ class GomokuGame {
 
         const directions = [[1, 0], [0, 1], [1, 1], [1, -1]]; // 四个方向
 
-        for (let row = 0; row < 15; row++) {
-            for (let col = 0; col < 15; col++) {
+        for (let row = 0; row < 19; row++) {
+            for (let col = 0; col < 19; col++) {
                 if (this.board[row][col] === player) {
                     for (const [dx, dy] of directions) {
                         const pattern = this.analyzePattern(row, col, dx, dy, player);
@@ -675,7 +675,7 @@ class GomokuGame {
 
         // Check left direction
         let r = row - dx, c = col - dy;
-        while (r >= 0 && r < 15 && c >= 0 && c < 15) {
+        while (r >= 0 && r < 19 && c >= 0 && c < 19) {
             if (this.board[r][c] === player) {
                 consecutive++;
                 r -= dx;
@@ -693,7 +693,7 @@ class GomokuGame {
         // Check right direction
         r = row + dx;
         c = col + dy;
-        while (r >= 0 && r < 15 && c >= 0 && c < 15) {
+        while (r >= 0 && r < 19 && c >= 0 && c < 19) {
             if (this.board[r][c] === player) {
                 consecutive++;
                 r += dx;
@@ -786,7 +786,7 @@ class GomokuGame {
             for (let dc = -2; dc <= 2; dc++) {
                 const newRow = row + dr;
                 const newCol = col + dc;
-                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15 && 
+                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19 && 
                     this.board[newRow][newCol] !== 0) {
                     nearbyStones++;
                 }
@@ -885,7 +885,7 @@ class GomokuGame {
             for (let i = 1; i < 5; i++) {
                 const newRow = row + i * dx;
                 const newCol = col + i * dy;
-                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15 && 
+                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19 && 
                     this.board[newRow][newCol] === player) {
                     count++;
                 } else {
@@ -897,7 +897,7 @@ class GomokuGame {
             for (let i = 1; i < 5; i++) {
                 const newRow = row - i * dx;
                 const newCol = col - i * dy;
-                if (newRow >= 0 && newRow < 15 && newCol >= 0 && newCol < 15 && 
+                if (newRow >= 0 && newRow < 19 && newCol >= 0 && newCol < 19 && 
                     this.board[newRow][newCol] === player) {
                     count++;
                 } else {
@@ -952,8 +952,12 @@ class GomokuGame {
             this.ctx.stroke();
         }
         
-        // Draw star points
-        const starPoints = [[3, 3], [3, 11], [7, 7], [11, 3], [11, 11]];
+        // Draw star points (9 points for 19x19 board)
+        const starPoints = [
+            [3, 3], [3, 9], [3, 15],    // Top row
+            [9, 3], [9, 9], [9, 15],    // Middle row (including center/天元)
+            [15, 3], [15, 9], [15, 15]  // Bottom row
+        ];
         this.ctx.fillStyle = '#8b4513';
         
         for (const [row, col] of starPoints) {
@@ -1155,7 +1159,7 @@ class GomokuGame {
     }
 
     resetGame() {
-        this.board = Array(15).fill().map(() => Array(15).fill(0));
+        this.board = Array(19).fill().map(() => Array(19).fill(0));
         this.currentPlayer = 1;
         this.gameOver = false;
         this.winner = null;

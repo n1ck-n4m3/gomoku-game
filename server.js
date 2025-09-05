@@ -14,7 +14,7 @@ app.use(express.json());
 // Game state
 class GomokuGame {
     constructor() {
-        this.board = Array(15).fill().map(() => Array(15).fill(0)); // 0: empty, 1: black, 2: white
+        this.board = Array(19).fill().map(() => Array(19).fill(0)); // 0: empty, 1: black, 2: white
         this.currentPlayer = 1; // 1: black, 2: white
         this.players = [];
         this.gameOver = false;
@@ -24,7 +24,7 @@ class GomokuGame {
     }
 
     reset() {
-        this.board = Array(15).fill().map(() => Array(15).fill(0));
+        this.board = Array(19).fill().map(() => Array(19).fill(0));
         this.currentPlayer = 1;
         this.gameOver = false;
         this.winner = null;
@@ -32,7 +32,7 @@ class GomokuGame {
     }
 
     isValidMove(row, col) {
-        return row >= 0 && row < 15 && col >= 0 && col < 15 && this.board[row][col] === 0;
+        return row >= 0 && row < 19 && col >= 0 && col < 19 && this.board[row][col] === 0;
     }
 
     makeMove(row, col, player = null) {
