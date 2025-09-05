@@ -5,7 +5,7 @@ A beautiful, full-featured Gomoku (Five in a Row) game implementation with multi
 ## 🎮 Features
 
 ### Core Game Features
-- **Beautiful Canvas Board**: Smooth 15x15 grid with traditional wooden board appearance
+- **Beautiful Canvas Board**: Smooth 19✖️19 grid with traditional wooden board appearance
 - **Multiple Game Modes**: Online multiplayer, local multiplayer, AI opponent, and offline mode
 - **Ultra-Strong AI**: Unbeatable AI opponent with advanced algorithms
 - **Game State Persistence**: Automatic restoration on browser refresh - games never lost!
